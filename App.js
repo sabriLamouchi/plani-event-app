@@ -1,24 +1,19 @@
-<<<<<<< HEAD
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+
 import React from "react";
-=======
+// =======
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import LogIn from './screens/Frontend/LogIn';
->>>>>>> 353f576 (Committing local changes before merge)
+import Home from "./screens/Frontend/Home";
 
-import LogIn from "./screens/Frontend/LogIn";
 const App = () => {
   return (
-    <View style={styles.container}>
-<<<<<<< HEAD
-      <LogIn />
-=======
-     <LogIn/>
->>>>>>> 353f576 (Committing local changes before merge)
-      <StatusBar style="auto" />
-    </View>
+    // <View style={styles.container}>
+
+    //  {/* <LogIn/> */}
+      
+    // </View>
+    <Home/>
   );
 };
 

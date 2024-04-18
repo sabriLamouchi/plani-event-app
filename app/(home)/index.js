@@ -5,15 +5,16 @@ import { events } from '../../constants/data';
 import { firestore_db } from '../../firebaseConfig';
 import { collection, getDoc, getDocs, limit, limitToLast, onSnapshot, query, startAfter} from 'firebase/firestore';
 import Event from '../../components/event/Event.js';
+import { useRouter } from 'expo-router';
 
 
-const Home = () => {
-    const [text,setText]=useState('');
+const Index = () => {
+    const [searchedText,setSearchedText]=useState('');
     //get user logic ; 
     const [events,setEvents]=useState(null)
-    const eventsRef=collection(firestore_db,'events');
-
+    const router=useRouter()
     useEffect(()=>{
+        const eventsRef=collection(firestore_db,'events');
         const subscriber=onSnapshot(eventsRef,{
             next:(snapshot)=>{
                 const evts=[];
@@ -29,19 +30,19 @@ const Home = () => {
     },[])
     console.log(events)
     return (
-        <SafeAreaView style={{flex:1,backgroundColor:"white",paddingHorizontal:5}}>
+        <SafeAreaView style={{flex:1,backgroundColor:"white",paddingHorizontal:5,marginTop:-35}}>
 
             {/* input field and add button container  */}
             <View style={styles.container} >
                 <View style={styles.header}>
                     <TextInput
-                        onChangeText={(text)=>setText(text)}
-                        value={text}
+                        onChangeText={(text)=>setSearchedText(text)}
+                        value={searchedText}
                         style={styles.TextInput}
                         placeholder="Search all events"
                      />
                 <View style={{justifyContent:"center",alignItems:"center"}}>
-                    <TouchableOpacity style={styles.button} onPress={()=>{}}>
+                    <TouchableOpacity style={styles.button} onPress={()=>router.navigate('/createEvent')}>
                                 <Ionicons name='add-outline' color="pink" size={30} />
                     </TouchableOpacity> 
                 </View>
@@ -77,7 +78,7 @@ const Home = () => {
 
 
 
-export default Home;
+export default Index;
 
 const styles=StyleSheet.create({
     container:{
